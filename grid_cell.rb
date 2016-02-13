@@ -1,5 +1,3 @@
-require 'pry'
-
 class GridCell
   attr_reader :status
 

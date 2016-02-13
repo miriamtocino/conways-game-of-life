@@ -1,4 +1,4 @@
-require 'pry'
+require 'byebug'
 require_relative 'grid_cell'
 
 class Grid
@@ -32,7 +32,7 @@ class Grid
     return nil
   end
 
-  def set_cell_alive(index)
+  def set_alive(index)
     @cells[index].set_alive
   end
 
