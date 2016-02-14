@@ -2,12 +2,13 @@ require 'byebug'
 require_relative 'grid'
 
 class Game
-  def initialize
-    print_intro
-    @width, @height = set_width_and_height
 
-    @grid = Grid.new(@width, @height)
-    set_initial_cells_alive
+  def initialize(window)
+    @grid = Grid.new(window, 6, 6)
+  end
+
+  def draw
+    @grid.draw_grid
   end
 
   def print_intro
