@@ -47,4 +47,18 @@ describe Grid do
       end
     end
   end
+
+  describe '#get_neighbours' do
+    context 'central cell' do
+      it 'returns an array of all its neighbours indexes' do
+        expect(@grid.get_neighbours(4)).to match_array [0, 1, 2, 3, 5, 6, 7, 8]
+      end
+    end
+
+    context 'corner cell' do
+      it 'returns an array of all its neighbours indexes' do
+        expect(@grid.get_neighbours(8)).to match_array [4, 5, 7]
+      end
+    end
+  end
 end

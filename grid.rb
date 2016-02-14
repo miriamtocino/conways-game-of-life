@@ -21,9 +21,9 @@ class Grid
       new_line = (((index + 1) % width) == 0)
 
       if cell.status == false
-        print "-"
+        print " - "
       else
-        print "x"
+        print " x "
       end
 
       print "\n" if new_line
@@ -50,5 +50,37 @@ class Grid
 
   def is_inside_grid(x, y)
     (x >= 0) && (x < width) && (y >= 0) && (y < height)
+  end
+
+  def get_neighbours(index)
+    x, y = get_coordinates(index)
+
+    neighbours = []
+
+    # left-top cell
+    neighbours << get_index(x-1, y-1) if is_inside_grid(x-1, y-1)
+
+    # top cell
+    neighbours << get_index(x, y-1) if is_inside_grid(x, y-1)
+
+    # right-top cell
+    neighbours << get_index(x+1, y-1) if is_inside_grid(x+1, y-1)
+
+    # left cell
+    neighbours << get_index(x-1, y) if is_inside_grid(x-1, y)
+
+    # right cell
+    neighbours << get_index(x+1, y) if is_inside_grid(x+1, y)
+
+    # left-bottom cell
+    neighbours << get_index(x-1, y+1) if is_inside_grid(x-1, y+1)
+
+    # bottom cell
+    neighbours << get_index(x, y+1) if is_inside_grid(x, y+1)
+
+    # right-bottom cell
+    neighbours << get_index(x+1, y+1) if is_inside_grid(x+1, y+1)
+
+    neighbours
   end
 end
