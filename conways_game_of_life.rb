@@ -24,6 +24,16 @@ class ConwaysWayOfLife < Gosu::Window
 
     return width, height
   end
+
+  def needs_cursor?
+    true
+  end
+
+  def button_down(id)
+    if id == Gosu::MsLeft
+      @game.handle_mouse_down(mouse_x, mouse_y)
+    end
+  end
 end
 
 window = ConwaysWayOfLife.new

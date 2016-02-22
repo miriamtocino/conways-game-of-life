@@ -50,8 +50,11 @@ class Grid
   end
 
   def get_index(x, y)
-    index = x + y * @@width
-    return index
+    if !is_inside_grid(x, y)
+      return nil
+    else
+      return x + y * @@width
+    end
   end
 
   def is_inside_grid(x, y)

@@ -11,8 +11,12 @@ class Game
     @grid.draw_grid
   end
 
-  def print_intro
-    puts "Welcome to Conway's Game of Life"
+  def handle_mouse_down(x, y)
+    y = (y.to_i - 11)/25
+    x = (x.to_i - 11)/25
+
+    debugger
+    @clicked_cell_index = @grid.get_index(x, y)
   end
 
   def set_initial_cells_alive
