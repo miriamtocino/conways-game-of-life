@@ -1,7 +1,7 @@
 require 'gosu'
 require_relative 'game'
 
-class Main < Gosu::Window
+class ConwaysWayOfLife < Gosu::Window
 
   def initialize
     width, height = set_width_and_height
@@ -26,5 +26,5 @@ class Main < Gosu::Window
   end
 end
 
-window = Main.new
+window = ConwaysWayOfLife.new
 window.show
