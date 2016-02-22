@@ -3,8 +3,8 @@ require_relative 'grid'
 
 class Game
 
-  def initialize(window)
-    @grid = Grid.new(window, 6, 6)
+  def initialize(window, width, height)
+    @grid = Grid.new(window, width, height)
   end
 
   def draw
@@ -13,16 +13,6 @@ class Game
 
   def print_intro
     puts "Welcome to Conway's Game of Life"
-  end
-
-  def set_width_and_height
-    puts "Please select the width of your grid:"
-    width = gets.chomp.to_i
-
-    puts "Please select the height of your grid:"
-    height = gets.chomp.to_i
-
-    return width, height
   end
 
   def set_initial_cells_alive

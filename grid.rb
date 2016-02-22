@@ -15,24 +15,6 @@ class Grid
     end
   end
 
-  def render_grid
-    print "\n"
-
-    @cells.each_with_index do |cell, index|
-      new_line = (((index + 1) % @@width) == 0)
-
-      if cell.status == false
-        print " - "
-      else
-        print " x "
-      end
-
-      print "\n" if new_line
-    end
-    print "\n"
-    return nil
-  end
-
   def draw_grid
     @cells.each_with_index do |cell, index|
       draw_cell(index)
@@ -42,16 +24,16 @@ class Grid
   def draw_cell(index)
     x, y = get_coordinates(index)
 
-    x1 = 22 + x * 100
-    y1 = 22 + y * 100
-    x2 = x1 + 96
+    x1 = 11 + x * 25
+    y1 = 11 + y * 25
+    x2 = x1 + 24
     y2 = y1
     x3 = x2
-    y3 = y2 + 96
+    y3 = y2 + 24
     x4 = x1
     y4 = y3
 
-    c = Gosu::Color.argb(0xaaff0000)
+    c = Gosu::Color.argb(0xff_ffffff)
 
     @@window.draw_quad(x1, y1, c, x2, y2, c, x3, y3, c, x4, y4, c, 2)
   end
