@@ -18,8 +18,11 @@ class Cell
     @status = @@statuses[:dead]
   end
 
-  def set_alive
-    @color = @@colors[:alive]
-    @status = @@statuses[:alive]
+  def set_status
+    if @status == @@statuses[:dead]
+      @status = @@statuses[:alive]
+    elsif @status == @@statuses[:alive]
+      @status = @@statuses[:dead]
+    end
   end
 end

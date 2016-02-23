@@ -4,11 +4,11 @@ require_relative 'game'
 class ConwaysWayOfLife < Gosu::Window
 
   def initialize
-    width, height = set_width_and_height
-    super((width * 25) + 20, (height * 25) + 20)
+    @width, @height = set_width_and_height
+    super((@width * 25) + 20, (@height * 25) + 20)
 
     self.caption = "Conway's Game Of Life"
-    @game = Game.new(self, width, height)
+    @game = Game.new(self, @width, @height)
   end
 
   def draw
@@ -33,7 +33,15 @@ class ConwaysWayOfLife < Gosu::Window
   end
 
   def button_down(id)
-    @game.handle_mouse_down(mouse_x, mouse_y) if id == Gosu::MsLeft
+    # Select seeds celss by pressing left mouse
+    if id == Gosu::MsLeft
+      @game.handle_mouse_down(mouse_x, mouse_y)
+    end
+
+    # start game again by pressing ctrl-r
+    if id == Gosu::KbR && button_down?(Gosu::KbLeftControl)
+      @game = Game.new(self, @width, @height)
+    end
   end
 end
 

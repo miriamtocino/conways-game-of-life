@@ -17,7 +17,7 @@ class Game
     x = (x.to_i - 11)/25
 
     return nil unless seed_cell = @grid.get_cell(x, y)
-    seed_cell.set_alive
+    seed_cell.set_status
   end
 end
 
