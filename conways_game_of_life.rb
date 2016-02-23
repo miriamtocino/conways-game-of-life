@@ -15,6 +15,9 @@ class ConwaysWayOfLife < Gosu::Window
     @game.draw
   end
 
+  def update
+  end
+
   def set_width_and_height
     puts "Please select the width of your grid:"
     width = gets.chomp.to_i
@@ -30,9 +33,7 @@ class ConwaysWayOfLife < Gosu::Window
   end
 
   def button_down(id)
-    if id == Gosu::MsLeft
-      @game.handle_mouse_down(mouse_x, mouse_y)
-    end
+    @game.handle_mouse_down(mouse_x, mouse_y) if id == Gosu::MsLeft
   end
 end
 
