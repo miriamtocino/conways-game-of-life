@@ -4,6 +4,8 @@ require_relative 'cell'
 
 class Grid
 
+  attr_accessor :cells
+
   def initialize(window, width, height)
     @@window = window
     @@width = width

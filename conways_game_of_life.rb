@@ -38,9 +38,14 @@ class ConwaysWayOfLife < Gosu::Window
       @game.handle_mouse_down(mouse_x, mouse_y)
     end
 
-    # start game again by pressing ctrl-r
+    # Reset game by pressing Ctrl-R
     if id == Gosu::KbR && button_down?(Gosu::KbLeftControl)
       @game = Game.new(self, @width, @height)
+    end
+
+    # Start game by pressing enter
+    if id == Gosu::KbReturn
+      @game.tick
     end
   end
 end

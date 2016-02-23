@@ -18,7 +18,7 @@ class Cell
     @status = @@statuses[:dead]
   end
 
-  def set_status
+  def toggle_status
     if @status == @@statuses[:dead]
       @status = @@statuses[:alive]
     elsif @status == @@statuses[:alive]
