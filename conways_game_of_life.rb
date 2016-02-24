@@ -1,5 +1,5 @@
 require 'gosu'
-require_relative 'game'
+require_relative 'grid'
 
 class ConwaysWayOfLife < Gosu::Window
 
@@ -8,14 +8,18 @@ class ConwaysWayOfLife < Gosu::Window
     super((@width * 25) + 20, (@height * 25) + 20)
 
     self.caption = "Conway's Game Of Life"
-    @game = Game.new(self, @width, @height)
-  end
+    @running = false
 
-  def draw
-    @game.draw
+    @grid = Grid.new(self, @width, @height)
   end
 
   def update
+    super
+    @grid.update if @running
+  end
+
+  def draw
+    @grid.draw
   end
 
   def set_width_and_height
@@ -33,20 +37,24 @@ class ConwaysWayOfLife < Gosu::Window
   end
 
   def button_down(id)
-    # Select seeds celss by pressing left mouse
-    if id == Gosu::MsLeft
-      @game.handle_mouse_down(mouse_x, mouse_y)
-    end
+    case id
 
-    # Reset game by pressing Ctrl-R
-    if id == Gosu::KbR && button_down?(Gosu::KbLeftControl)
-      @game = Game.new(self, @width, @height)
-    end
+    # Select seeds cells by pressing left mouse
+    when Gosu::MsLeft
+      @grid.handle_mouse_down(mouse_x, mouse_y)
 
-    # Start game by pressing enter
-    if id == Gosu::KbReturn
-      @game.tick
+    # Start by pressing enter
+    when Gosu::KbReturn
+      toggle_running
+
+    # Quit by pressing ESC
+    when Gosu::KbEscape
+      close
     end
+  end
+
+  def toggle_running
+    @running = !@running
   end
 end
 

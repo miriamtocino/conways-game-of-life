@@ -1,21 +1,25 @@
 require 'gosu'
 
 class Cell
+  @@colors ||= {
+    dead: Gosu::Color::WHITE,
+    alive: Gosu::Color::BLACK,
+  }
+
+  @@statuses ||= {
+    dead: false,
+    alive: true
+  }
+
   attr_accessor :status, :color
 
   def initialize
-    @@colors ||= {
-      dead: Gosu::Color::WHITE,
-      alive: Gosu::Color::BLACK,
-      seed: Gosu::Color::RED
-    }
-    @@statuses ||= {
-      dead: false,
-      alive: true
-    }
-
     @color = @@colors[:dead]
     @status = @@statuses[:dead]
+  end
+
+  def set_status(status)
+    @status = status
   end
 
   def toggle_status
