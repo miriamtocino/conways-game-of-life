@@ -4,13 +4,17 @@ require_relative 'grid'
 class ConwaysWayOfLife < Gosu::Window
 
   def initialize
-    @width, @height = set_width_and_height
-    super((@width * 25) + 20, (@height * 25) + 20)
+    puts "Please select the width of your grid:"
+    width = gets.chomp.to_i
 
+    puts "Please select the height of your grid:"
+    height = gets.chomp.to_i
+
+    super((width * 25) + 20, (height * 25) + 20)
     self.caption = "Conway's Game Of Life"
-    @running = false
 
-    @grid = Grid.new(self, @width, @height)
+    @running = false
+    @grid = Grid.new(self, width, height)
   end
 
   def update
@@ -20,20 +24,6 @@ class ConwaysWayOfLife < Gosu::Window
 
   def draw
     @grid.draw
-  end
-
-  def set_width_and_height
-    puts "Please select the width of your grid:"
-    width = gets.chomp.to_i
-
-    puts "Please select the height of your grid:"
-    height = gets.chomp.to_i
-
-    return width, height
-  end
-
-  def needs_cursor?
-    true
   end
 
   def button_down(id)
@@ -47,6 +37,11 @@ class ConwaysWayOfLife < Gosu::Window
     when Gosu::KbReturn
       toggle_running
 
+    # Reset by pressing R
+    when Gosu::KbR
+      @running = false
+      @grid.clear
+
     # Quit by pressing ESC
     when Gosu::KbEscape
       close
@@ -55,6 +50,10 @@ class ConwaysWayOfLife < Gosu::Window
 
   def toggle_running
     @running = !@running
+  end
+
+  def needs_cursor?
+    true
   end
 end
 
