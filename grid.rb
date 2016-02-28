@@ -40,6 +40,39 @@ class Grid
     neighbours
   end
 
+  def get_neighbours_indexes(index)
+    x, y = get_coordinates(index)
+    neighbours = []
+
+    # left-top cell
+    neighbours << get_index(x-1, y-1) if is_inside?(x-1, y-1)
+
+    # top cell
+    neighbours << get_index(x, y-1) if is_inside?(x, y-1)
+
+    # right-top cell
+    neighbours << get_index(x+1, y-1) if is_inside?(x+1, y-1)
+
+    # left cell
+    neighbours << get_index(x-1, y) if is_inside?(x-1, y)
+
+    # right cell
+    neighbours << get_index(x+1, y) if is_inside?(x+1, y)
+
+    # left-bottom cell
+    neighbours << get_index(x-1, y+1) if is_inside?(x-1, y+1)
+
+    # bottom cell
+    neighbours << get_index(x, y+1) if is_inside?(x, y+1)
+
+    # right-bottom cell
+    neighbours << get_index(x+1, y+1) if is_inside?(x+1, y+1)
+
+    neighbours
+  end
+
+
+
   def get_coordinates(index)
     x = index % @width
     y = index / @width
